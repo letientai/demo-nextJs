@@ -1,9 +1,8 @@
 import React from "react";
-import { getProductById, getProductIds } from "../index";
+import { getProductIds } from "../index";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
-// import Image from "next/image";
-import Image from 'next/image'
+import axios from "axios";
 const ProductDetail = ({ post }) => {
   return (
     <div>
@@ -16,7 +15,6 @@ const ProductDetail = ({ post }) => {
       <div className="detail-container">
         <div className="detail-left">
           <img className="detail-image" src={post.images[0]} />
-         
         </div>
         <div className="detail-main">
           <p>
@@ -96,7 +94,6 @@ const ProductDetail = ({ post }) => {
 
 export const getStaticPaths = async () => {
   const paths = await getProductIds();
-  //   console.log(path);
   return {
     paths,
     fallback: false,
@@ -104,7 +101,10 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const post = await getProductById(params.id);
+  const res = await axios.get(
+    `https://lap-center.herokuapp.com/api/product/getProductById/${params.id}`
+  );
+  const post = await res.data.response;
   return {
     props: {
       post,

@@ -2,8 +2,12 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Link from "next/Link";
-
+import { useRouter } from 'next/router'
 const NavbarMenu = () => {
+  const router = useRouter()
+  const moveToHome = () =>{
+    router.push("/")
+  }
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -14,9 +18,6 @@ const NavbarMenu = () => {
           </Link>
           <Link href="/about" passHref>
             <Nav.Link>About</Nav.Link>
-          </Link>
-          <Link href="/contact" passHref>
-            <Nav.Link >Contact</Nav.Link>
           </Link>
           <Link href="/productDetail" passHref>
             <Nav.Link >Product</Nav.Link>
