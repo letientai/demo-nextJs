@@ -1,0 +1,13 @@
+.home-container{
+  .products{
+    /* background-color: aqua; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .search{
+    margin-top: 30px;
+    min-width: 260px;
+    width: 35%;
+  }
+}
