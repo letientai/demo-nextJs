@@ -5,6 +5,7 @@ import "../styles/card.scss"
 import "../styles/home.scss"
 import "../styles/footer.scss"
 import Layout from "../components/layout";
+
 function MyApp({ Component, pageProps }) {
   return (
     <Layout>

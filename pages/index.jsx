@@ -1,17 +1,24 @@
-// import Layout from "../components/layout";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "../components/card";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
-
+import { getPost } from "../lib/post";
 export default function Home({ posts }) {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
+
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
   };
+  // useEffect(async()=>{
+  //   // const res = await axios.get(
+  //   //   `https://lap-center.herokuapp.com/api/product?productName=${search}`
+  //   // );
+  //   await setData(posts);
+  // },[])
+
   const onSearch = async () => {
     const res = await axios.get(
       `https://lap-center.herokuapp.com/api/product?productName=${search}`
@@ -19,6 +26,7 @@ export default function Home({ posts }) {
     await setData(res.data.products);
     setSearch("")
   };
+
   return (
     <div className="home-container">
       <div className="search">
@@ -38,12 +46,12 @@ export default function Home({ posts }) {
         </InputGroup>
       </div>
       <div className="products">
-        {data.length > 0
+        {/* {data.length > 0
           ? data?.map((post) => <Card product={post} key={post._id} />)
-          : posts?.map((post) => <Card product={post} key={post._id} />)}
-        {/* {posts?.map((post) => (
+          : posts?.map((post) => <Card product={post} key={post._id} />)} */}
+        {posts?.map((post) => (
           <Card product={post} key={post._id} />
-        ))} */}
+        ))}
       </div>
     </div>
   );
@@ -58,6 +66,8 @@ export const getStaticProps = async () => {
     },
   };
 };
+
+
 export const getProductIds = async () => {
   const res = await axios.get("https://lap-center.herokuapp.com/api/product?");
   const posts = await res.data.products;
@@ -66,12 +76,4 @@ export const getProductIds = async () => {
       id: `${post._id}`,
     },
   }));
-};
-
-export const getProductById = async (id) => {
-  const res = await axios.get(
-    `https://lap-center.herokuapp.com/api/product/getProductById/${id}`
-  );
-  const posts = await res.data.response;
-  return posts;
 };
