@@ -92,15 +92,6 @@ const ProductDetail = ({ post }) => {
     </Container>
   );
 };
-
-export const getStaticPaths = async () => {
-  const paths = await getProductIds();
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
 export const getStaticProps = async ({ params }) => {
   const res = await axios.get(
     `https://lap-center.herokuapp.com/api/product/getProductById/${params.id}`
@@ -112,5 +103,15 @@ export const getStaticProps = async ({ params }) => {
     },
   };
 };
+
+export const getStaticPaths = async () => {
+  const paths = await getProductIds();
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+
 
 export default ProductDetail;
