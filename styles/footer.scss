@@ -1,10 +1,47 @@
-.footer{
-    margin-top: 50px;
-    background-color: #212529;
-    color: white;
-    padding: 40px;
-    display: block;
-    span{
-        float: right;
+.footer {
+  margin-top: 50px;
+  background-color: #212529;
+  color: rgb(255, 255, 255);
+  padding: 40px;
+  display: block;
+  background-image: url("https://wallpaperaccess.com/full/1261218.jpg");
+  background-size: cover;
+  background-position-y: center;
+  text-shadow:
+  0px 0.1px 0.5px rgba(0, 0, 0, 0.107),
+  0px 0.3px 1.3px rgba(0, 0, 0, 0.153),
+  0px 0.6px 2.4px rgba(0, 0, 0, 0.19),
+  0px 1.1px 4.2px rgba(0, 0, 0, 0.227),
+  0px 2.1px 7.9px rgba(0, 0, 0, 0.273),
+  0px 5px 19px rgba(0, 0, 0, 0.38)
+;
+  ul {
+    li {
+      color: #cbffdf;
+      cursor: pointer;
     }
+  }
+  span {
+    margin-top: 30px;
+    float: right;
+  }
+  .col1 {
+    p {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    ul {
+      list-style-type: none;
+      li {
+        color: #ffffff !important;
+      }
+    }
+  }
+}
+@media screen and (max-width: 780px) {
+  .footer {
+    .col1 {
+      width: 100%;
+    }
+  }
 }

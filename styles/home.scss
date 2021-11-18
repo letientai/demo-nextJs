@@ -1,13 +1,31 @@
-.home-container{
-  .products{
-    /* background-color: aqua; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
+.home-top {
+  height: 420px;
+  width: 100%;
+  background-image: url("https://wallpaperaccess.com/full/279643.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
   .search{
+    float: right;
+    margin: 40px;
+    
+  }
+}
+.home-container {
+  h2{
+    // margin: auto;
+    text-align: center;
+    font-family: cursive;
+  }
+  margin-top: 40px;
+  .products {
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+  }
+  .search {
     margin-top: 30px;
     min-width: 260px;
-    width: 35%;
+    width: 100%;
   }
 }

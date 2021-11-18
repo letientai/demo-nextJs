@@ -1,65 +1,83 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "../components/card";
-import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
-import FormControl from "react-bootstrap/FormControl";
+import { Icon, Input, Pagination } from "semantic-ui-react";
+import Container from "react-bootstrap/Container";
 import { getPost } from "../lib/post";
 export default function Home({ posts }) {
-  const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
+  const [pageNumber, setPageNumber] = useState(1);
+
+  useEffect(() => {
+    setData(posts);
+  }, []);
 
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
   };
-  // useEffect(async()=>{
-  //   // const res = await axios.get(
-  //   //   `https://lap-center.herokuapp.com/api/product?productName=${search}`
-  //   // );
-  //   await setData(posts);
-  // },[])
 
   const onSearch = async () => {
     const res = await axios.get(
       `https://lap-center.herokuapp.com/api/product?productName=${search}`
     );
+    await console.log("ahihi", res.data.products);
     await setData(res.data.products);
-    setSearch("")
+  };
+
+  const handlePaginationChange = async (e, { activePage }) => {
+    await setPageNumber(activePage);
+    const res = await axios.get(
+      `https://lap-center.herokuapp.com/api/product?productName=${search}&pageNumber=${activePage}`
+    );
+    await setData(res.data.products);
+    window.scrollTo({
+      top: 100,
+      behavior: "smooth",
+    });
   };
 
   return (
-    <div className="home-container">
-      <div className="search">
-        <InputGroup className="mb-3">
-          <FormControl
-            aria-label="Text input with dropdown button"
+    <div>
+      <div className="home-top">
+        <div className="search">
+          <Input
+            className="input-search"
+            icon={
+              <Icon name="search" inverted circular link onClick={onSearch} />
+            }
+            placeholder="Search..."
             value={search}
             onChange={onChangeSearch}
           />
-          <Button
-            variant="outline-secondary"
-            id="button-addon2"
-            onClick={onSearch}
-          >
-            Search
-          </Button>
-        </InputGroup>
+        </div>
       </div>
-      <div className="products">
-        {/* {data.length > 0
-          ? data?.map((post) => <Card product={post} key={post._id} />)
-          : posts?.map((post) => <Card product={post} key={post._id} />)} */}
-        {posts?.map((post) => (
-          <Card product={post} key={post._id} />
-        ))}
-      </div>
+      <Container className="home-container">
+        <h2>LAPCENTER</h2>
+        <hr />
+        <div className="products">
+          {data.length === 0 && <h1>Không tìm thấy sản phẩm nào!!</h1>}
+          {data.map((post) => (
+            <Card product={post} key={post._id} />
+          ))}
+        </div>
+        <Pagination
+          boundaryRange={0}
+          activePage={pageNumber}
+          ellipsisItem={null}
+          firstItem={null}
+          lastItem={null}
+          siblingRange={1}
+          totalPages={3}
+          onPageChange={handlePaginationChange}
+        />
+      </Container>
     </div>
   );
 }
 
 export const getStaticProps = async () => {
-  const res = await axios.get("https://lap-center.herokuapp.com/api/product?");
-  const posts = await res.data.products;
+  const posts = await getPost();
   return {
     props: {
       posts,
@@ -68,12 +86,3 @@ export const getStaticProps = async () => {
 };
 
 
-export const getProductIds = async () => {
-  const res = await axios.get("https://lap-center.herokuapp.com/api/product?");
-  const posts = await res.data.products;
-  return posts.map((post) => ({
-    params: {
-      id: `${post._id}`,
-    },
-  }));
-};

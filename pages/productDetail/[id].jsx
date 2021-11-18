@@ -1,11 +1,12 @@
 import React from "react";
-import { getProductIds } from "../index";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
+import { getProductIds } from "../../lib/post";
 const ProductDetail = ({ post }) => {
   return (
-    <div>
+    <Container>
       <div className="detail-product-name">{post.name}</div>
       <div className="detail-status">
         <p>Tình trạng: Còn hàng</p>
@@ -88,7 +89,7 @@ const ProductDetail = ({ post }) => {
           </tbody>
         </Table>
       </div>
-    </div>
+    </Container>
   );
 };
 
@@ -111,4 +112,5 @@ export const getStaticProps = async ({ params }) => {
     },
   };
 };
+
 export default ProductDetail;

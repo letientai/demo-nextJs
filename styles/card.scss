@@ -1,50 +1,70 @@
 .card {
-  //   box-shadow: 0px 0px 1.7px rgba(0, 0, 0, 0.017),
-  //     0px 0px 3.9px rgba(0, 0, 0, 0.024), 0px 0px 6.9px rgba(0, 0, 0, 0.03),
-  //     0px 0px 10.9px rgba(0, 0, 0, 0.035), 0px 0px 16.8px rgba(0, 0, 0, 0.04),
-  //     0px 0px 26.2px rgba(0, 0, 0, 0.046), 0px 0px 43.5px rgba(0, 0, 0, 0.053),
-  //     0px 0px 87px rgba(0, 0, 0, 0.07);
-  //   width: 250px;
-  //   overflow: hidden;
-  //   margin: 10px;
   display: flex;
-  flex-direction: column;
   border-radius: 5px;
   cursor: pointer;
-  padding: 20px;
-  margin: 10px auto;
-  min-width: 250px;
-  max-width: 250px;
-  height: 350px;
-  background-color: #fff;
-  box-shadow: 5px 5px 25px rgb(184, 183, 183);
+  margin: 15px;
+  max-width: 200px;
+  height: 270px;
+  background-color: #f3f3f3;
+  // box-shadow: 5px 5px 25px rgb(184, 183, 183);
   overflow: hidden;
 
   img {
     // width: 100%;
-    width: 200px !important;
-    height: 150px !important;
+    width: 190px !important;
+    height: 120px !important;
+    padding: 10px;
   }
   .inf {
-    width: 220px;
+    width: 190px;
     padding: 15px;
     b {
-        white-space: pre-wrap; 
-        overflow: hidden; 
-        text-overflow: ellipsis; 
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-         display: -webkit-box;
+      white-space: pre-wrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
     }
     p {
       margin: 0px;
-    //    white-space: pre-wrap; 
-        overflow: hidden; 
-        text-overflow: ellipsis; 
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-         display: -webkit-box;
+      //    white-space: pre-wrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+    }
+  }
+  .btn{
+    .btn_buy{
+      font-size: 13px;
+      height: 27px;
+      // padding: 5px;
+      width: 100%;
     }
   }
 }
 
+@media screen and (max-width: 777px) {
+  .card {
+    min-width: 250px;
+    max-width: 250px;
+    margin: 10px auto;
+    padding: 10px;
+    height: 340px;
+    img {
+      width: 230px !important;
+      height: 180px !important;
+    }
+    .inf {
+      width: 230px;
+      padding: 15px;
+    }
+    .btn{
+      .btn_buy{
+        height: 30px;
+      }
+    }
+  }
+}
