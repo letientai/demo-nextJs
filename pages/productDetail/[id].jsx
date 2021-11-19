@@ -64,15 +64,15 @@ const ProductDetail = ({ post }) => {
           <tbody>
             <tr>
               <td>Modal</td>
-              <td>{post.model}</td>
+              <td>{post?.model || "-"}</td>
             </tr>
             <tr>
               <td>Cpu</td>
-              <td>{post.cpu}</td>
+              <td>{post?.cpu || "-"}</td>
             </tr>
             <tr>
               <td>Ram</td>
-              <td>{post.ram}</td>
+              <td>{post?.ram || "-"}</td>
             </tr>
             <tr>
               <td>Ổ cứng</td>

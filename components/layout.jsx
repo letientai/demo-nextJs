@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Footer from "./footer";
 import NavbarMenu from "./navbarMenu";
-
 const Layout = ({ children }) => (
   <div>
     <Head>

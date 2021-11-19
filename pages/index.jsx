@@ -1,36 +1,27 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import Card from "../components/card";
 import { Icon, Input, Pagination } from "semantic-ui-react";
 import Container from "react-bootstrap/Container";
 import { getPost } from "../lib/post";
 export default function Home({ posts }) {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(posts);
   const [search, setSearch] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
-
-  useEffect(() => {
-    setData(posts);
-  }, []);
-
+  const [isLoading, setIsLoading] = useState(false);
+  
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
   };
 
   const onSearch = async () => {
-    const res = await axios.get(
-      `https://lap-center.herokuapp.com/api/product?productName=${search}`
-    );
-    await console.log("ahihi", res.data.products);
-    await setData(res.data.products);
+    const posts = await getPost(search, 1);
+    await setData(posts);
   };
 
   const handlePaginationChange = async (e, { activePage }) => {
     await setPageNumber(activePage);
-    const res = await axios.get(
-      `https://lap-center.herokuapp.com/api/product?productName=${search}&pageNumber=${activePage}`
-    );
-    await setData(res.data.products);
+    const posts = await getPost(search, activePage);
+    await setData(posts);
     window.scrollTo({
       top: 100,
       behavior: "smooth",
@@ -77,7 +68,7 @@ export default function Home({ posts }) {
 }
 
 export const getStaticProps = async () => {
-  const posts = await getPost();
+  const posts = await getPost("",1);
   return {
     props: {
       posts,
