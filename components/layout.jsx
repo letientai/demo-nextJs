@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Footer from "./footer";
 import NavbarMenu from "./navbarMenu";
 const Layout = ({ children }) => (
@@ -8,9 +7,9 @@ const Layout = ({ children }) => (
       <title>LapCenter</title>
     </Head>
     <header>
-      <NavbarMenu />
+      {/* <NavbarMenu /> */}
     </header>
-    <main>{children}</main>
+      <main>{children}</main>
     <Footer />
   </div>
 );
